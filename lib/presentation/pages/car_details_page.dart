@@ -1,5 +1,4 @@
 import 'package:flutter/cupertino.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rentcar/presentation/pages/map_details_page.dart';
 import 'package:rentcar/presentation/widgets/car_card.dart';

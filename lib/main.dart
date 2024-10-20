@@ -1,12 +1,7 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:rentcar/firebase_options.dart';
-import 'package:rentcar/presentation/pages/car_details_page.dart';
-import 'package:rentcar/presentation/pages/car_list_screen.dart';
-import 'package:rentcar/presentation/pages/map_details_page.dart';
-
 import 'presentation/pages/onboarding_page.dart';
 
 void main() async{
@@ -50,7 +45,6 @@ class MyApp extends StatelessWidget {
 }
 
 
-/// Function to log a custom event in Firebase Analytics
 Future<void> logCustomEvent() async {
   FirebaseAnalytics analytics = FirebaseAnalytics.instance;
 
