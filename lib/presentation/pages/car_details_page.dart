@@ -1,11 +1,44 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:rentcar/data/data_models/car.dart';
+import 'package:rentcar/presentation/pages/map_details_page.dart';
 import 'package:rentcar/presentation/widgets/car_card.dart';
 import 'package:rentcar/presentation/widgets/car_history_card.dart';
 
-class CarDetailsPage extends StatelessWidget {
-  const CarDetailsPage({super.key});
+import '../../data/models/car.dart';
+
+class CarDetailsPage extends StatefulWidget {
+  const CarDetailsPage({super.key, required this.car});
+  final Car car;
+
+  @override
+  State<StatefulWidget> createState() => _CarDetailsPage();
+}
+
+class _CarDetailsPage extends State<CarDetailsPage> with SingleTickerProviderStateMixin{
+
+  AnimationController ? _controller;
+  Animation<double>? _animation;
+
+
+  @override
+  void initState() {
+   _controller = AnimationController(
+       duration:Duration(seconds: 3),
+       vsync: this);
+   _animation = Tween<double>(begin: 1.0,end: 1.5).animate(_controller!)..addListener((){
+     setState(() {
+
+     });
+   });
+   _controller!.forward();
+    super.initState();
+  }
+  @override
+  void dispose() {
+    _controller!.forward();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -54,19 +87,30 @@ class CarDetailsPage extends StatelessWidget {
                   ),
                   SizedBox(width: 20,),
                   Expanded(
-                    child: Container(
-                      height: 170,
-                      decoration: BoxDecoration(
-                          borderRadius:BorderRadius.circular(20),
-                          image: DecorationImage(image: AssetImage('assets/maps.png'),
-                              fit:BoxFit.cover),
-                          boxShadow: [
-                            BoxShadow(
-                                color: Colors.black12,
-                                spreadRadius: 5,
-                                blurRadius: 10
-                            )
-                          ]
+                    child: GestureDetector(
+                      onTap: (){
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>MapDetailsPage(car:widget.car )));
+                      },
+                      child: Container(
+                        height: 170,
+                        decoration: BoxDecoration(
+                            borderRadius:BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Colors.black12,
+                                  spreadRadius: 5,
+                                  blurRadius: 10
+                              )
+                            ]
+                        ),
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.circular(20),
+                          child: Transform.scale(
+                            scale:_animation!.value,
+                            alignment: Alignment.center,
+                            child: Image.asset('assets/maps.png',fit: BoxFit.cover,),
+                          )
+                        ),
                       ),
                     ),
                   )
@@ -76,13 +120,13 @@ class CarDetailsPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20),
               child: Column(
-               crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text("Past Rides", style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
 
                   CarHistoryCard(),
                   CarHistoryCard(),
-                CarHistoryCard()
+                  CarHistoryCard()
                 ],
               ),
             )

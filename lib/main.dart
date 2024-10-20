@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:rentcar/firebase_options.dart';
 import 'package:rentcar/presentation/pages/car_details_page.dart';
 import 'package:rentcar/presentation/pages/car_list_screen.dart';
+import 'package:rentcar/presentation/pages/map_details_page.dart';
 
 import 'presentation/pages/onboarding_page.dart';
 
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: CarDetailsPage(),
+      home: OnboardingPage(),
     );
   }
 }

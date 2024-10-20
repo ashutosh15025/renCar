@@ -2,7 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:rentcar/presentation/widgets/car_card.dart';
 
-import '../../data/data_models/car.dart';
+import '../../data/models/car.dart';
+
 
 class CarListScreen extends StatelessWidget {
 
